@@ -36,29 +36,29 @@ const Contact = () => {
       name: 'WhatsApp',
       Icon: WhatsAppIcon,
       color: 'bg-green-500',
-      link: 'https://wa.me/yournumber',
-      label: 'Fast Response'
+      link: 'https://wa.me/6283140470146r',
+      label: 'Chat me'
     },
     {
       name: 'Instagram',
       Icon: InstagramIcon,
       color: 'bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-600',
-      link: 'https://instagram.com/yourusername',
-      label: '@yourprofile'
+      link: 'https://www.instagram.com/ridho.alfi.py/',
+      label: '@ridho.alfi.py'
     },
     {
       name: 'YouTube',
       Icon: YoutubeIcon,
       color: 'bg-red-600',
-      link: 'https://youtube.com/yourchannel',
-      label: 'Watch Projects'
+      link: 'https://youtube.com/@rid.xyz1?si=bNMk5fW51z_gqfnC',
+      label: 'My channel in youtube'
     },
     {
       name: 'Facebook',
       Icon: FacebookIcon,
       color: 'bg-blue-600',
-      link: 'https://facebook.com/yourprofile',
-      label: 'Personal Page'
+      link: 'https://www.facebook.com/ridho.770678',
+      label: 'My facebook page'
     }
   ];
 
@@ -115,7 +115,7 @@ const Contact = () => {
                   I'm currently available for freelance work and full-time positions. Let's create something extraordinary together.
                 </p>
                 <motion.a 
-                  href="mailto:your@email.com" 
+                  href="ridhoalfiwijaya@email.com" 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="inline-flex items-center px-12 py-6 bg-blue-600 text-white font-black rounded-3xl shadow-2xl shadow-blue-500/40 hover:bg-blue-700 transition-all gap-3"
