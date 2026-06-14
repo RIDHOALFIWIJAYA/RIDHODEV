@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Terminal, Briefcase, Award } from 'lucide-react';
 import { FadeIn } from './Reveal';
 
@@ -28,7 +27,6 @@ const About = () => {
     <section id="about" className="py-24 lg:py-32 bg-white dark:bg-slate-900 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
         <div className="text-center mb-20">
           <FadeIn>
             <h2 className="text-blue-600 dark:text-blue-400 font-black tracking-widest uppercase text-xs mb-3">About Me</h2>
@@ -39,7 +37,6 @@ const About = () => {
 
         <div className="grid lg:grid-cols-2 gap-20 items-start">
           
-          {/* Left Column: Skills */}
           <div className="space-y-12">
             <FadeIn direction="right">
               <h4 className="text-3xl font-black text-slate-900 dark:text-white mb-8 flex items-center gap-4">
@@ -58,18 +55,13 @@ const About = () => {
                       {skillGroup.category}
                     </p>
                     <div className="flex flex-wrap gap-4">
-                      {skillGroup.items.map((skill, i) => (
-                        <motion.span
+                      {skillGroup.items.map((skill) => (
+                        <span
                           key={skill}
-                          whileHover={{ scale: 1.1, y: -5, backgroundColor: '#2563eb', color: '#fff' }}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.1 * i }}
-                          className="px-6 py-3 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-[1.25rem] text-sm font-black border-2 border-slate-100 dark:border-slate-700 hover:border-blue-500/50 dark:hover:border-blue-500/50 transition-all cursor-default shadow-sm"
+                          className="px-6 py-3 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-[1.25rem] text-sm font-black border-2 border-slate-100 dark:border-slate-700 hover:border-blue-500/50 dark:hover:border-blue-500/50 hover:scale-105 hover:-translate-y-1 hover:bg-blue-600 hover:text-white transition-all cursor-default shadow-sm"
                         >
                           {skill}
-                        </motion.span>
+                        </span>
                       ))}
                     </div>
                   </FadeIn>
@@ -78,7 +70,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* Right Column: Experience */}
           <div>
             <FadeIn direction="left">
               <h4 className="text-3xl font-black text-slate-900 dark:text-white mb-8 flex items-center gap-4">
@@ -95,13 +86,9 @@ const About = () => {
               {experiences.map((exp, index) => (
                 <FadeIn key={index} delay={0.3 * index} direction="left">
                   <div className="relative pl-20 group">
-                    {/* Circle on line */}
                     <div className="absolute left-6 top-0 w-5 h-5 bg-white dark:bg-slate-900 border-4 border-blue-600 rounded-full z-10 group-hover:scale-150 transition-transform duration-300 shadow-xl shadow-blue-500/30" />
                     
-                    <motion.div 
-                      whileHover={{ x: 10 }}
-                      className="p-8 bg-slate-50 dark:bg-slate-800 rounded-[2.5rem] border-2 border-slate-100 dark:border-slate-700 hover:border-blue-500/30 transition-all shadow-sm group-hover:shadow-2xl group-hover:shadow-blue-500/5"
-                    >
+                    <div className="p-8 bg-slate-50 dark:bg-slate-800 rounded-[2.5rem] border-2 border-slate-100 dark:border-slate-700 hover:border-blue-500/30 hover:translate-x-2 transition-all shadow-sm group-hover:shadow-2xl group-hover:shadow-blue-500/5">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
                         <h5 className="text-xl font-black text-slate-900 dark:text-white leading-tight">
                           {exp.role}
@@ -114,13 +101,12 @@ const About = () => {
                       <p className="text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
                         {exp.description}
                       </p>
-                    </motion.div>
+                    </div>
                   </div>
                 </FadeIn>
               ))}
             </div>
 
-            {/* Extra: Awards or certifications placeholder */}
             <FadeIn delay={0.8}>
               <div className="mt-12 p-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-[2.5rem] text-white flex items-center gap-6 shadow-2xl shadow-blue-500/20 group">
                 <div className="p-4 bg-white/20 rounded-2xl group-hover:rotate-12 transition-transform">

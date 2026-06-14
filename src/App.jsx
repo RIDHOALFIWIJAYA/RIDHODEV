@@ -1,9 +1,10 @@
+import { lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import About from './components/About';
-import Projects from './components/Projects';
-import Contact from './components/Contact';
-import './App.css';
+
+const About = lazy(() => import('./components/About'));
+const Projects = lazy(() => import('./components/Projects'));
+const Contact = lazy(() => import('./components/Contact'));
 
 function App() {
   return (
@@ -11,16 +12,21 @@ function App() {
       <Navbar />
       
       <main className="relative">
-        {/* Floating background blobs for extra interactivity */}
         <div className="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
-          <div className="absolute top-[20%] left-[10%] w-[30vw] h-[30vw] bg-blue-400/5 rounded-full blur-[120px] animate-float"></div>
-          <div className="absolute top-[60%] right-[10%] w-[25vw] h-[25vw] bg-purple-400/5 rounded-full blur-[120px] animate-float delay-1000"></div>
+          <div className="absolute top-[20%] left-[10%] w-[30vw] h-[30vw] bg-blue-400/5 rounded-full blur-[120px] animate-blob-1"></div>
+          <div className="absolute top-[60%] right-[10%] w-[25vw] h-[25vw] bg-purple-400/5 rounded-full blur-[120px] animate-blob-2"></div>
         </div>
 
         <Hero />
-        <About />
-        <Projects />
-        <Contact />
+        <Suspense fallback={<SectionSkeleton />}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <Projects />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <Contact />
+        </Suspense>
       </main>
 
       <footer className="py-12 text-center text-slate-500 text-sm border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 backdrop-blur-sm">
@@ -41,6 +47,14 @@ function App() {
           </p>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function SectionSkeleton() {
+  return (
+    <div className="py-24 lg:py-32 flex items-center justify-center">
+      <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
     </div>
   );
 }

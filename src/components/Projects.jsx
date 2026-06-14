@@ -1,12 +1,6 @@
-import { motion } from 'framer-motion';
 import { ExternalLink, Layers } from 'lucide-react';
 import { FadeIn } from './Reveal';
-
-const GithubIcon = (props) => (
-  <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-  </svg>
-);
+import { GithubIcon } from './Icons';
 
 const Projects = () => {
   const projects = [
@@ -48,7 +42,6 @@ const Projects = () => {
     <section id="projects" className="py-24 lg:py-32 bg-slate-50 dark:bg-slate-950 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
         <div className="text-center mb-20">
           <FadeIn>
             <h2 className="text-blue-600 dark:text-blue-400 font-black tracking-widest uppercase text-xs mb-3">Portfolio</h2>
@@ -57,44 +50,35 @@ const Projects = () => {
           </FadeIn>
         </div>
 
-        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-10 lg:gap-16">
           {projects.map((project, index) => (
             <FadeIn key={index} delay={0.2 * index} direction={index % 2 === 0 ? "right" : "left"}>
-              <motion.div 
-                whileHover={{ y: -15 }}
-                className="group relative bg-white dark:bg-slate-900 rounded-[3rem] overflow-hidden border-2 border-slate-100 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-500 shadow-xl hover:shadow-[0_40px_80px_-15px_rgba(37,99,235,0.15)]"
-              >
-                {/* Image Area */}
+              <div className="group relative bg-white dark:bg-slate-900 rounded-[3rem] overflow-hidden border-2 border-slate-100 dark:border-slate-800 hover:border-blue-500/50 transition-all duration-500 shadow-xl hover:shadow-[0_40px_80px_-15px_rgba(37,99,235,0.15)] hover:-translate-y-4">
                 <div className="relative h-80 overflow-hidden">
                   <img 
                     src={project.image} 
                     alt={project.title} 
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
                     <div className="flex gap-5 transform translate-y-10 group-hover:translate-y-0 transition-transform duration-500">
-                      <motion.a 
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
+                      <a 
                         href={project.link} 
-                        className="p-5 bg-white text-slate-900 rounded-[1.5rem] hover:bg-blue-600 hover:text-white transition-all shadow-2xl"
+                        className="p-5 bg-white text-slate-900 rounded-[1.5rem] hover:bg-blue-600 hover:text-white transition-all shadow-2xl hover:scale-110 active:scale-90"
                       >
                         <ExternalLink className="w-6 h-6" />
-                      </motion.a>
-                      <motion.a 
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
+                      </a>
+                      <a 
                         href={project.github} 
-                        className="p-5 bg-white text-slate-900 rounded-[1.5rem] hover:bg-blue-600 hover:text-white transition-all shadow-2xl"
+                        className="p-5 bg-white text-slate-900 rounded-[1.5rem] hover:bg-blue-600 hover:text-white transition-all shadow-2xl hover:scale-110 active:scale-90"
                       >
                         <GithubIcon className="w-6 h-6" />
-                      </motion.a>
+                      </a>
                     </div>
                   </div>
                 </div>
 
-                {/* Content Area */}
                 <div className="p-10">
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.map((t) => (
@@ -115,31 +99,25 @@ const Projects = () => {
                       <Layers className="w-5 h-5" />
                       <span className="text-xs font-black uppercase tracking-widest">Case Study</span>
                     </div>
-                    <motion.button 
-                      whileHover={{ x: 5 }}
-                      className="text-blue-600 dark:text-blue-400 font-black text-sm flex items-center gap-2"
-                    >
+                    <button className="text-blue-600 dark:text-blue-400 font-black text-sm flex items-center gap-2 hover:translate-x-1 transition-transform">
                       Explore Project <ExternalLink className="w-4 h-4" />
-                    </motion.button>
+                    </button>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </FadeIn>
           ))}
         </div>
 
-        {/* Dynamic Footer CTA */}
         <FadeIn delay={0.5}>
           <div className="mt-24 text-center">
-            <motion.a 
+            <a 
               href="https://github.com/" 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center px-12 py-5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black rounded-[2rem] hover:shadow-2xl transition-all gap-3"
+              className="inline-flex items-center px-12 py-5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black rounded-[2rem] hover:shadow-2xl transition-all gap-3 hover:scale-105 active:scale-95"
             >
               <GithubIcon className="w-6 h-6" />
               See More on GitHub
-            </motion.a>
+            </a>
           </div>
         </FadeIn>
       </div>
