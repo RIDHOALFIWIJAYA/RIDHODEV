@@ -3,10 +3,11 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import babel from '@rolldown/plugin-babel'
 
-
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/RIDHODEV/',
+  // Jika sedang di-build di Vercel/Production umum, gunakan '/'
+  // Jika untuk GitHub Pages, gunakan '/RIDHODEV/'
+  base: process.env.VERCEL ? '/' : '/RIDHODEV/',
   plugins: [
     react(),
     tailwindcss(),
