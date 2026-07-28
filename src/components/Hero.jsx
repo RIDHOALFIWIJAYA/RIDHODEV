@@ -36,7 +36,7 @@ const Hero = () => {
 
             <FadeIn delay={0.6}>
               <p className="text-xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                Hi, I'm <span className="font-bold text-slate-900 dark:text-blue-400">Ridho</span>. A creative developer focused on building immersive, high-performance web experiences that leave an impact.
+                Hi, I'm <span className="font-bold text-slate-900 dark:text-blue-400">Ridho</span>. a Frontend Developer passionate about crafting fast, responsive, and engaging web applications with React & modern web tools.
               </p>
             </FadeIn>
             
