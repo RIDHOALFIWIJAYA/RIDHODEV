@@ -24,7 +24,8 @@ const Education = () => {
       description: 'Saya menempuh pendidikan di SMK dengan sangat baik',
       achievements: [
         'Juara1 LKS',
-        'Juara1 Web Developer'
+        'Juara1 Web Developer',
+        'Juara 1 Web Design'
       ]
     }
   ];
