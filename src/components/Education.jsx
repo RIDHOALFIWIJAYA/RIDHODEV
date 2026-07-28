@@ -9,7 +9,7 @@ const Education = () => {
       degree: 'SoftWare Engineering',
       period: '2029 - Sekarang',
       location: 'Berlin, German',
-      description: 'Penjelasan singkat mengenai fokus peminatan, kegiatan ekstrakurikuler, atau hal penting yang dipelajari selama masa studi.',
+      description: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet',
       achievements: [
         'Bug hunter spesialist',
         'Top 1 Hackton',
