@@ -5,11 +5,11 @@ const Education = () => {
   // Data dummy riwayat pendidikan - silakan ubah sesuai data kam
   const educationData = [
     {
-      institution: 'Universitas Teknologi Berlin',
+      institution: 'Technische Universität Berlin (TU Berlin)',
       degree: 'SoftWare Engineering',
       period: '2029 - Sekarang',
       location: 'Berlin, German',
-      description: 'lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet',
+      description: 'Fokus pada pengembangan sistem perangkat lunak berskala besar, arsitektur sistem terdistribusi, rekayasa web modern, dan alogaritma pemrograman.',
       achievements: [
         'Bug hunter spesialist',
         'Top 1 Hackton',
