@@ -61,10 +61,10 @@ const Hero = () => {
             <FadeIn delay={1}>
               <div className="mt-12 flex justify-center lg:justify-start gap-6">
                 {[
-                  { Icon: GithubIcon, href: "#" },
-                  { Icon: YoutubeIcon, href: "#" },
-                  { Icon: InstagramIcon, href: "#" },
-                  { Icon: FacebookIcon, href: "#" },
+                  { Icon: GithubIcon, href: "https://github.com/RIDHOALFIWIJAYA" },
+                  { Icon: YoutubeIcon, href: "https://youtube.com/@rid.xyz1?si=bNMk5fW51z_gqfnC" },
+                  { Icon: InstagramIcon, href: "https://www.instagram.com/ridho.alfi.py/" },
+                  { Icon: FacebookIcon, href: "https://www.facebook.com/ridho.770678" },
                 ].map((social, i) => (
                   <a
                     key={i}
