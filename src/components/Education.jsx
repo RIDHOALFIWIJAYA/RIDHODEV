@@ -5,26 +5,26 @@ const Education = () => {
   // Data dummy riwayat pendidikan - silakan ubah sesuai data kam
   const educationData = [
     {
-      institution: 'Nama Sekola / Universitas',
-      degree: 'Jurusan / Tingkat Pendidikan',
-      period: '2023 - Sekarang',
-      location: 'Kota, Indonesia',
+      institution: 'Universitas Teknologi Berlin',
+      degree: 'SoftWare Engineering',
+      period: '2029 - Sekarang',
+      location: 'Berlin, German',
       description: 'Penjelasan singkat mengenai fokus peminatan, kegiatan ekstrakurikuler, atau hal penting yang dipelajari selama masa studi.',
       achievements: [
-        'Pencapaian / Prestasi 1',
-        'Pencapaian / Prestasi 2',
-        'Sertifikasi / Proyek Utama'
+        'Bug hunter spesialist',
+        'Top 1 Hackton',
+        'Web dev certified'
       ]
     },
     {
-      institution: 'Nama Sekolah Menengah',
-      degree: 'Jurusan / Peminatan',
-      period: '2020 - 2023',
-      location: 'Kota, Indonesia',
-      description: 'Ringkasan singkat mengenai pengalaman belajar, fokus keahlian awal, atau aktivitas pendukung lainnya.',
+      institution: 'SMKN1 L.PAKAN',
+      degree: 'Jurusan RPL',
+      period: '2026 - 2029',
+      location: 'Lubuk pakam, Indonesia',
+      description: 'Saya menempuh pendidikan di SMK dengan sangat baik',
       achievements: [
-        'Pencapaian / Prestasi 1',
-        'Pencapaian / Prestasi 2'
+        'Juara1 LKS',
+        'Juara1 Web Developer'
       ]
     }
   ];
