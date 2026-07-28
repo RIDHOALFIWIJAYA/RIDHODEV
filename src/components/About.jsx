@@ -30,7 +30,7 @@ const About = () => {
         <div className="text-center mb-20">
           <FadeIn>
             <h2 className="text-blue-600 dark:text-blue-400 font-black tracking-widest uppercase text-xs mb-3">About Me</h2>
-            <h3 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white mb-6">Skill yang saya kuasai</h3>
+            <h3 className="text-4xl sm:text-5xl font-black text-slate-900 dark:text-white mb-6">Tech stack and my Journey</h3>
             <div className="mt-4 w-24 h-2 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full shadow-lg shadow-blue-500/20"></div>
           </FadeIn>
         </div>
