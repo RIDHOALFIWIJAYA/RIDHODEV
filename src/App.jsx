@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Education from './components/Education';
 
 const About = lazy(() => import('./components/About'));
 const Projects = lazy(() => import('./components/Projects'));
@@ -20,6 +21,9 @@ function App() {
         <Hero />
         <Suspense fallback={<SectionSkeleton />}>
           <About />
+        </Suspense>
+        <Suspense fallback={<SectionSkeleton />}>
+          <Education />
         </Suspense>
         <Suspense fallback={<SectionSkeleton />}>
           <Projects />
