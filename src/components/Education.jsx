@@ -2,10 +2,10 @@ import { GraduationCap, Calendar, MapPin, Award } from 'lucide-react';
 import { FadeIn } from './Reveal';
 
 const Education = () => {
-  // Data dummy riwayat pendidikan - silakan ubah sesuai data kamu
+  // Data dummy riwayat pendidikan - silakan ubah sesuai data kam
   const educationData = [
     {
-      institution: 'Nama Sekolah / Universitas',
+      institution: 'Nama Sekola / Universitas',
       degree: 'Jurusan / Tingkat Pendidikan',
       period: '2023 - Sekarang',
       location: 'Kota, Indonesia',
