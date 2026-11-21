@@ -1,66 +1,70 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Education from './components/Education';
 
-const About = lazy(() => import('./components/About'));
 const Projects = lazy(() => import('./components/Projects'));
+const About = lazy(() => import('./components/About'));
 const Contact = lazy(() => import('./components/Contact'));
 
-function App() {
-  return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 selection:bg-blue-100 dark:selection:bg-blue-900/30">
-      <Navbar />
-      
-      <main className="relative">
-        <div className="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
-          <div className="absolute top-[20%] left-[10%] w-[30vw] h-[30vw] bg-blue-400/5 rounded-full blur-[120px] animate-blob-1"></div>
-          <div className="absolute top-[60%] right-[10%] w-[25vw] h-[25vw] bg-purple-400/5 rounded-full blur-[120px] animate-blob-2"></div>
-        </div>
+const App = () => {
+  const [theme, setTheme] = useState(() =>
+    document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+  );
 
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+    try {
+      localStorage.setItem('theme', theme);
+    } catch (error) {
+      void error;
+    }
+  }, [theme]);
+
+  return (
+    <div className="min-h-screen bg-paper text-ink dark:bg-ink dark:text-paper">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:inline-flex focus:min-h-11 focus:items-center focus:bg-ink focus:px-4 focus:text-sm focus:text-paper dark:focus:bg-paper dark:focus:text-ink"
+      >
+        Lewati ke konten
+      </a>
+
+      <Navbar theme={theme} onToggleTheme={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))} />
+
+      <main id="main" className="pt-16 sm:pt-20">
         <Hero />
-        <Suspense fallback={<SectionSkeleton />}>
-          <About />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
-          <Education />
-        </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
+        <Suspense fallback={<SectionLoading label="Proyek" />}>
           <Projects />
         </Suspense>
-        <Suspense fallback={<SectionSkeleton />}>
+        <Suspense fallback={<SectionLoading label="Tentang" />}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<SectionLoading label="Kontak" />}>
           <Contact />
         </Suspense>
       </main>
 
-      <footer className="py-12 text-center text-slate-500 text-sm border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-500 to-green-500 bg-clip-text text-transparent">
-              RIDHO.DEV
-            </span>
-            <div className="flex gap-6">
-              <a href="#" className="hover:text-blue-600 transition-colors">Home</a>
-              <a href="#about" className="hover:text-blue-600 transition-colors">About</a>
-              <a href="#projects" className="hover:text-blue-600 transition-colors">Projects</a>
-              <a href="#contact" className="hover:text-blue-600 transition-colors">Contact</a>
-            </div>
-          </div>
-          <p className="border-t border-slate-100 dark:border-slate-800 pt-8">
-            &copy; {new Date().getFullYear()} Ridho Project. Dibuat dengan hati dan ketulusan.
-          </p>
+      <footer className="border-t border-ink/10 py-10 dark:border-paper/10">
+        <div className="shell flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <span className="font-display text-lg text-ink dark:text-paper">RIDHO.DEV</span>
+          <nav aria-label="Tautan footer" className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-concrete *:inline-flex *:min-h-11 *:items-center dark:text-ash">
+            <a href="#home" className="hover:text-accent-ink dark:hover:text-accent">Beranda</a>
+            <a href="#projects" className="hover:text-accent-ink dark:hover:text-accent">Proyek</a>
+            <a href="#about" className="hover:text-accent-ink dark:hover:text-accent">Tentang</a>
+            <a href="#contact" className="hover:text-accent-ink dark:hover:text-accent">Kontak</a>
+            <a href="https://github.com/RIDHOALFIWIJAYA" target="_blank" rel="noopener noreferrer" className="hover:text-accent-ink dark:hover:text-accent">GitHub</a>
+          </nav>
+          <p className="text-sm text-concrete dark:text-ash">© {new Date().getFullYear()} RIDHO.DEV</p>
         </div>
       </footer>
     </div>
   );
-}
+};
 
-function SectionSkeleton() {
-  return (
-    <div className="py-24 lg:py-32 flex items-center justify-center">
-      <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" />
-    </div>
-  );
-}
+const SectionLoading = ({ label }) => (
+  <div className="shell py-20 text-concrete dark:text-ash" role="status">
+    Memuat bagian {label}...
+  </div>
+);
 
 export default App;

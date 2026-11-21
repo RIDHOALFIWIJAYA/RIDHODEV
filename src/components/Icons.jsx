@@ -30,3 +30,37 @@ export const WhatsAppIcon = (props) => (
     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
   </svg>
 );
+
+export const MenuIcon = (props) => (
+  <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="square">
+    <line x1="3" y1="7" x2="21" y2="7"></line>
+    <line x1="3" y1="17" x2="21" y2="17"></line>
+  </svg>
+);
+
+export const CloseIcon = (props) => (
+  <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="square">
+    <line x1="5" y1="5" x2="19" y2="19"></line>
+    <line x1="19" y1="5" x2="5" y2="19"></line>
+  </svg>
+);
+
+export const SunIcon = (props) => (
+  <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
+    <circle cx="12" cy="12" r="4"></circle>
+    <line x1="12" y1="2" x2="12" y2="4"></line>
+    <line x1="12" y1="20" x2="12" y2="22"></line>
+    <line x1="2" y1="12" x2="4" y2="12"></line>
+    <line x1="20" y1="12" x2="22" y2="12"></line>
+    <line x1="4.9" y1="4.9" x2="6.3" y2="6.3"></line>
+    <line x1="17.7" y1="17.7" x2="19.1" y2="19.1"></line>
+    <line x1="4.9" y1="19.1" x2="6.3" y2="17.7"></line>
+    <line x1="17.7" y1="6.3" x2="19.1" y2="4.9"></line>
+  </svg>
+);
+
+export const MoonIcon = (props) => (
+  <svg {...props} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"></path>
+  </svg>
+);

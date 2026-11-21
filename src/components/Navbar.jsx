@@ -1,86 +1,125 @@
-import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { CloseIcon, MenuIcon, MoonIcon, SunIcon } from './Icons';
 
-const Navbar = () => {
+const links = [
+  { name: 'Beranda', href: '#home' },
+  { name: 'Proyek', href: '#projects' },
+  { name: 'Tentang', href: '#about' },
+  { name: 'Kontak', href: '#contact' },
+];
+
+const Navbar = ({ theme, onToggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuButtonRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
-  ];
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
+  const themeLabel = theme === 'dark' ? 'Aktifkan tema terang' : 'Aktifkan tema gelap';
+
+  const closeMenu = () => {
+    setIsOpen(false);
+    window.setTimeout(() => menuButtonRef.current?.focus(), 0);
+  };
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-      scrolled 
-      ? 'py-4 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-800/50 shadow-lg' 
-      : 'py-6 bg-transparent'
-    }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          <div className="flex-shrink-0 cursor-pointer hover:scale-105 transition-transform">
-            <span className="text-2xl font-black bg-gradient-to-r from-blue-500 to-green-600 bg-clip-text text-transparent tracking-tighter">
-              RIDHO.DEV
-            </span>
-          </div>
+    <nav className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-200 ${
+      scrolled
+        ? 'border-ink/10 bg-paper dark:border-paper/15 dark:bg-ink'
+        : 'border-transparent bg-transparent'
+    }`}>
+      <div className="shell flex h-16 items-center justify-between gap-4 sm:h-20">
+        <a href="#home" className="inline-flex min-h-11 items-center font-display text-lg tracking-tight text-ink dark:text-paper">
+          RIDHO.DEV
+        </a>
 
-          <div className="hidden md:block">
-            <div className="flex items-center space-x-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="relative px-4 py-2 text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors group"
-                >
-                  {link.name}
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full" />
-                </a>
-              ))}
-              <button className="ml-4 px-6 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-xl shadow-lg shadow-blue-500/20 hover:scale-105 active:scale-95 transition-transform">
-                Hire Me
-              </button>
-            </div>
-          </div>
-
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-90"
+        <div className="flex items-center gap-2 sm:gap-4">
+          <div className="hidden items-center gap-1 md:flex">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="inline-flex min-h-11 items-center px-3 text-sm text-concrete transition-colors hover:text-accent-ink dark:text-ash dark:hover:text-accent"
+              >
+                {link.name}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              className="ml-2 inline-flex min-h-11 items-center border border-ink px-4 text-sm text-ink transition-colors hover:bg-ink hover:text-paper dark:border-paper dark:text-paper dark:hover:bg-paper dark:hover:text-ink"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+              Diskusi proyek
+            </a>
           </div>
+
+          <button
+            type="button"
+            onClick={onToggleTheme}
+            aria-label={themeLabel}
+            title={themeLabel}
+            className="inline-flex h-11 w-11 items-center justify-center text-ink transition-colors hover:text-accent-ink dark:text-paper dark:hover:text-accent"
+          >
+            {theme === 'dark' ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
+          </button>
+
+          <button
+            ref={menuButtonRef}
+            type="button"
+            onClick={() => setIsOpen((open) => !open)}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+            className="inline-flex min-h-11 items-center gap-2 px-2 text-ink dark:text-paper md:hidden"
+          >
+            {isOpen ? <CloseIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
+            <span className="text-sm">{isOpen ? 'Tutup' : 'Menu'}</span>
+          </button>
         </div>
       </div>
 
-      <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-        isOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
-      }`}>
-        <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-4 py-8 flex flex-col items-center gap-6">
-          {navLinks.map((link) => (
+      <div
+        id="mobile-menu"
+        aria-hidden={!isOpen}
+        className={`overflow-hidden border-b bg-paper transition-all duration-200 dark:bg-ink md:hidden ${
+          isOpen ? 'max-h-96 border-ink/10 opacity-100 dark:border-paper/15' : 'max-h-0 border-transparent opacity-0'
+        }`}
+      >
+        <div className="shell flex flex-col gap-1 py-4">
+          {links.map((link) => (
             <a
-              key={link.name}
+              key={link.href}
               href={link.href}
-              className="text-2xl font-black text-slate-900 dark:text-white hover:text-blue-600 transition-colors"
-              onClick={() => setIsOpen(false)}
+              tabIndex={isOpen ? 0 : -1}
+              onClick={closeMenu}
+              className="inline-flex min-h-12 items-center border-b border-ink/10 text-base text-ink dark:border-paper/10 dark:text-paper"
             >
               {link.name}
             </a>
           ))}
-          <button className="w-full max-w-xs py-4 bg-blue-600 text-white font-black rounded-2xl shadow-xl shadow-blue-500/30 hover:scale-105 active:scale-95 transition-transform">
-            Get In Touch
-          </button>
+          <a
+            href="#contact"
+            tabIndex={isOpen ? 0 : -1}
+            onClick={closeMenu}
+            className="mt-4 inline-flex min-h-12 items-center justify-center bg-ink px-4 text-sm text-paper dark:bg-paper dark:text-ink"
+          >
+            Diskusi proyek
+          </a>
         </div>
       </div>
     </nav>
